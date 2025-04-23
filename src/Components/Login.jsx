@@ -9,6 +9,7 @@ function Login() {
 
   const[emailId, setEmailId] = useState("virat@gmail.com");
   const[password, setPassword] = useState("Kohli@123");
+  const[error, setError] = useState("")
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -22,7 +23,7 @@ function Login() {
       return navigate("/");
     }
     catch(err){
-      console.error(err);
+      setError(err?.response?.data);
     }
     
   }
@@ -30,8 +31,8 @@ function Login() {
   return (
     <div className='flex justify-center items-center min-h-[550px]'>
     <div className="card bg-base-300 w-96 shadow-sm ">
-  <div className="card-body flex items-center justify-center">
-    <h2 className=" card-title">Login</h2>
+  <div className="card-body ">
+    <h2 className=" card-title mx-auto">Login</h2>
     <div>
 
         <label className="input validator my-3 ml-2"> 
@@ -82,6 +83,7 @@ function Login() {
 
 
     </div>
+    <p className='text-red-500'>{error}</p>
     <div className="card-actions justify-end">
       <button className="btn btn-primary" onClick={handleLogin}>Login</button>
     </div>
