@@ -5,7 +5,7 @@ function userCard({user}) {
     const {firstName, lastName, bio, age, gender, photoUrl, skills} = user;
     
   return (
-    <div className="card bg-base-300 w-[23rem]  shadow-sm mt-8">
+    <div className="card bg-base-300 w-[22rem] shadow-sm mt-6 mb-6">
     <figure>
       <img
         src={photoUrl}
