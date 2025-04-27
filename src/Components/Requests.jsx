@@ -41,7 +41,7 @@ function Requests() {
 
     if (requests.length === 0) 
         return (
-            <div className="flex justify-center items-center my-52  w-full">
+            <div className="flex justify-center items-center my-52 h-[25vh] w-full">
                 <div className="bg-base-300 p-10 rounded-2xl shadow-lg w-3/5 text-center">
                     <h1 className="text-2xl font-normal">
                     No requests yet — but the right commit will hit soon! 💻
@@ -52,7 +52,7 @@ function Requests() {
     
 
   return (
-    <div className='text-center justify-center my-5 '>
+    <div className='text-center justify-center my-5 h-[76vh]'>
         <h1 className='text-bold text-3xl'>Connection Requests</h1>
         {
             requests.map((request) => {

@@ -28,7 +28,7 @@ function Connections() {
     
     if (connections.length === 0) 
         return (
-            <div className="flex justify-center items-center my-52  w-full">
+            <div className="flex justify-center items-center my-52 h-[25vh]  w-full">
                 <div className="bg-base-300 p-10 rounded-2xl shadow-lg w-3/5 text-center">
                     <h1 className="text-2xl font-normal">
                     🤝 No connections? No problem. Let’s make some magic happen! ✨
@@ -39,7 +39,7 @@ function Connections() {
     
 
   return (
-    <div className='text-center justify-center my-5 '>
+    <div className='text-center justify-center my-5 h-[76vh]'>
         <h1 className='text-bold text-3xl'>Connections</h1>
         {
             connections.map((connections) => {

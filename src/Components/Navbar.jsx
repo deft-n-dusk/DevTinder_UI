@@ -25,6 +25,8 @@ function Navbar() {
   }
 
 
+
+
   return (
     <div className="navbar bg-base-300 shadow-sm">
   <div className="flex-1">
@@ -55,7 +57,7 @@ function Navbar() {
         <li><a onClick={handleLogout}>Logout</a></li>
       </ul>
     </div>
-    )}
+    ) }
   </div>
 </div>
   )

@@ -2,16 +2,24 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../utils/constants.JS';
+import { useEffect } from 'react';
 
 function Login() {
 
-  const[emailId, setEmailId] = useState("virat@gmail.com");
-  const[password, setPassword] = useState("Kohli@123");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const[emailId, setEmailId] = useState("");
+  const[password, setPassword] = useState("");
   const[error, setError] = useState("")
+  const[isLogin, setIsLogin] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  
+
 
   const handleLogin = async () => {
     try{
@@ -19,23 +27,66 @@ function Login() {
         emailId,
         password,
       }, {withCredentials: true})
-      dispatch(addUser(res.data));
-      return navigate("/");
+      
+      dispatch(addUser(res.data.data));
+      requestAnimationFrame(() => {
+        navigate("/");
+      });
     }
     catch(err){
-      setError(err?.response?.data);
+      setError(err?.response?.data || "Something went wrong");
     }
     
   }
+ 
+
+  const handleSignup = async() => {
+    try{
+      const res = await axios.post(BASE_URL + "/signup", 
+        {firstName, lastName, emailId, password}, 
+        { withCredentials: true},
+        )
+        dispatch(addUser(res.data))
+        return navigate("/profile/view");
+    }
+    catch(err){
+      setError(err?.response?.data );
+    }
+  }
 
   return (
-    <div className='flex justify-center items-center min-h-[550px]'>
+    <div className='flex justify-center items-center min-h-[600px] bg-gradient-to-r from-slate-800 via-purple-900 to-black'>
     <div className="card bg-base-300 w-96 shadow-sm ">
   <div className="card-body ">
-    <h2 className=" card-title mx-auto">Login</h2>
+    <h2 className=" card-title mx-auto">{isLogin ? "Login" : "Signup"}</h2>
     <div>
 
-        <label className="input validator my-3 ml-2"> 
+    {!isLogin&& <><legend className="fieldset-legend">First Name</legend>
+    <fieldset className="fieldset">
+  
+  <input className="input ml-2"
+         placeholder="First Name"
+         value={firstName}
+         onChange={(e) => setFirstName(e.target.value)}>
+       </input>
+  
+</fieldset>
+
+<legend className="fieldset-legend">Last Name</legend>
+<fieldset className="fieldset">
+
+  <input className="input ml-2"
+         placeholder="Last Name"
+         value={lastName}
+         onChange={(e) => setLastName(e.target.value)}>
+         </input>
+
+</fieldset>
+</>
+}
+<legend className="fieldset-legend">Email</legend>
+        <label className="input validator my-1 ml-2"> 
+      
   <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <g
       strokeLinejoin="round"
@@ -48,16 +99,20 @@ function Login() {
       <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
     </g>
   </svg>
+  
   <input 
       type="email"
+     
       value={emailId}
       placeholder="mail@site.com"
       onChange={(e) => setEmailId(e.target.value)}
       required />
         </label>
+        
     <div className="validator-hint hidden">Enter valid email address</div>
 
-    <label className="input validator my-3 ml-2">
+    <legend className="fieldset-legend">Password</legend>
+    <label className="input validator my-1 ml-2">
   <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <g
       strokeLinejoin="round"
@@ -85,10 +140,14 @@ function Login() {
     </div>
     <p className='text-red-500'>{error}</p>
     <div className="card-actions justify-end">
-      <button className="btn btn-primary" onClick={handleLogin}>Login</button>
+      <button className="btn btn-primary" onClick={isLogin? handleLogin : handleSignup}>{isLogin ? "Login" : "Signup"}</button>
     </div>
+    <p className='mx-auto cursor-pointer py-2 underline underline-offset-2' onClick={() => setIsLogin((value) => !value)}>
+      {isLogin ? "New User?  SignUp Here" : "Existing User? LogIn Here"}
+    </p>
   </div>
 </div>
+
 </div>
   )
 }
