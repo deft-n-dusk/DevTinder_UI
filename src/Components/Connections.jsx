@@ -28,8 +28,8 @@ function Connections() {
     
     if (connections.length === 0) 
         return (
-            <div className="flex justify-center items-center my-52 h-[25vh]  w-full">
-                <div className="bg-base-300 p-10 rounded-2xl shadow-lg w-3/5 text-center">
+            <div className="flex justify-center items-center my-52 h-[25vh]  w-full ">
+                <div className="bg-gradient-to-r from-slate-800 via-purple-900 to-black p-10 rounded-2xl shadow-lg w-3/5 text-center">
                     <h1 className="text-2xl font-normal">
                     🤝 No connections? No problem. Let’s make some magic happen! ✨
                     </h1>
@@ -39,13 +39,14 @@ function Connections() {
     
 
   return (
-    <div className='text-center justify-center my-5 h-[76vh]'>
-        <h1 className='text-bold text-3xl'>Connections</h1>
+    
+    <div className='flex flex-col items-center min-h-screen bg-gradient-to-r from-slate-800 via-purple-900 to-black p-8'>
+        <h1 className='text-bold mt-5 text-3xl'>Connections</h1>
         {
             connections.map((connections) => {
                 const {_id, firstName, lastName, gender, age, bio, skills, photoUrl} = connections;
                 return(
-                    <div key={_id} className='flex m-8 mx-auto rounded-lg border border-gray-500 bg-base-300 w-4/12'>
+                    <div key={_id} className='flex m-5 mx-auto border border-gray-400 rounded-lg bg-base-300  w-4/12'>
                         <div className='m-7'><img className=' rounded-full w-20 h-20  ' src={photoUrl} alt="Photo" /></div>
                         <div className='my-7 text-left text-gray-400'><h2 className=' text-white font-semibold text-xl mb-2'>{firstName + " " + lastName}</h2>
                             <p className=' '>{bio}</p>
@@ -58,6 +59,7 @@ function Connections() {
             })
         }
     </div>
+   
   )
 }
 

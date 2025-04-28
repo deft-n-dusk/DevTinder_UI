@@ -30,7 +30,8 @@ function Navbar() {
   return (
     <div className="navbar bg-base-300 shadow-sm">
   <div className="flex-1">
-    <Link to="/" className="btn btn-ghost text-xl">DevTinder.</Link>
+    <Link to="/" className="btn btn-ghost text-xl">
+    <img className='w-10 rounded-full' src="https://i.pinimg.com/736x/a3/dd/21/a3dd212965b4d0a0d9abc1004b524c69.jpg" alt="" />DevTinder.</Link>
   </div>
   <div className="flex gap-2">
     {user && (

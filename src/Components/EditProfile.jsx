@@ -52,7 +52,7 @@ function EditProfile({user}) {
     <>
     <div className='flex justify-center gap-10 items-center  min-h-screen max-h-[100vh]  overflow-y-auto  bg-gradient-to-r from-slate-800 via-purple-900 to-black'>
     <div className="card bg-base-300 w-[23rem]  shadow-sm  ">
-  <div className="card-body ">
+  <div className="card-body mr-2">
     <h2 className=" card-title mx-auto"> Edit Profile</h2>
     <div>
 
@@ -110,6 +110,8 @@ function EditProfile({user}) {
          </input>
 
 </fieldset>
+
+
 
 <legend className="fieldset-legend">Bio</legend>
 <fieldset className="fieldset">

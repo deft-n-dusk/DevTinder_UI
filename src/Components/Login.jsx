@@ -22,6 +22,7 @@ function Login() {
 
 
   const handleLogin = async () => {
+    setError("")
     try{
       const res = await axios.post( BASE_URL + "/login", {
         emailId,
@@ -41,12 +42,13 @@ function Login() {
  
 
   const handleSignup = async() => {
+    setError("");
     try{
       const res = await axios.post(BASE_URL + "/signup", 
         {firstName, lastName, emailId, password}, 
         { withCredentials: true},
         )
-        dispatch(addUser(res.data))
+        dispatch(addUser(res.data.data))
         return navigate("/profile/view");
     }
     catch(err){
