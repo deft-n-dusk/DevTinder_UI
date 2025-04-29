@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { BASE_URL } from '../utils/constants.JS';
+import { BASE_URL } from '../utils/constants.js';
 import { useEffect } from 'react';
 
 function Login() {
